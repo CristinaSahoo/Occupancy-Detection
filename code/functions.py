@@ -1,7 +1,15 @@
 import string
 import numpy as np
+import pandas as pd
+import pickle
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix, plot_confusion_matrix
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import GridSearchCV, train_test_split, cross_val_score, StratifiedKFold
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.tree import DecisionTreeClassifier
+
 
 def to_snake_case(name):
     if name == name.upper():
@@ -13,6 +21,7 @@ def to_snake_case(name):
         if letter in string.ascii_uppercase:
             name = name.replace(letter, '_' + letter.lower())
     return name
+
 
 def get_scores(gs, X_train, y_train, X_test, y_test):
     best_score = gs.best_score_
@@ -43,6 +52,7 @@ def get_scores(gs, X_train, y_train, X_test, y_test):
               ]
     return scores_list
 
+
 def round_up_time(timestamp):
     if ':59:59' in timestamp:
         hour = np.str(np.int(timestamp[11:13]) + 1)
@@ -59,3 +69,20 @@ def round_up_time(timestamp):
             timestamp = timestamp[0:14] + minutes[0] + minutes[1] + ':00'
         return timestamp
     return timestamp
+
+
+def run_model(df, features, target, params, model, model_name):   
+    cv_folds = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+    verbose = 1
+    n_jobs = 4
+    X = df[features]
+    y = df[target]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=0)
+    gs = GridSearchCV(model, param_grid=params, cv=cv_folds, verbose=verbose, n_jobs=n_jobs)
+    gs.fit(X_train, y_train)
+    scores = get_scores(gs, X_train, y_train, X_test, y_test)
+    scores.insert(0, model_name)
+    scores.insert(1, ', '.join(features))
+    filename = '../models/' + model_name + '.sav'
+    pickle.dump(gs, open(filename, 'wb'))
+    return scores
