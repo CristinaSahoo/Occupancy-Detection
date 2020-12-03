@@ -9,6 +9,8 @@ from sklearn.model_selection import GridSearchCV, train_test_split, cross_val_sc
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.preprocessing import StandardScaler
+
 
 
 def to_snake_case(name):
@@ -78,6 +80,10 @@ def run_model(df, features, target, params, model, model_name):
     X = df[features]
     y = df[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=0)
+    if model_name == 'knn':
+        ss = StandardScaler()
+        X_train = ss.fit_transform(X_train)
+        X_test = ss.fit(X_test)
     gs = GridSearchCV(model, param_grid=params, cv=cv_folds, verbose=verbose, n_jobs=n_jobs)
     gs.fit(X_train, y_train)
     scores = get_scores(gs, X_train, y_train, X_test, y_test)
