@@ -12,14 +12,13 @@
 ## Problem Statement
 
 
-
 ## Why is this important?
 
 The accurate determination of occupancy detection in buildings has been recently estimated to save energy in the order of 30 to 42% *[12–14]*. Experimental measurements reported that energy savings were 37% in *[15]* and between 29% and 80% *[16]* when occupancy data was used as an input for HVAC control algorithms. Nowadays, with the affordability of sensors increasing and becoming more ubiquitous, together with affordable computing power for automation systems it makes the determination of occupancy a very promising approach to lower energy consumption by appropriate control of HVAC and lighting systems in buildings. Other applications for occupancy detection include security and determination of building occupant behaviors. A system that could accurately detect the presence of the occupants without using a camera is very interesting due to privacy concerns.
 
 ## Data Dictionary
 
-|Feature Name|Feature Description|Units of Measurement|
+|Feature Name|Feature Description|Units of Measurement or Format|
 |---|---|---|
 |date|time the observation was recorded|year-month-day hour:minute:second|
 |temperature|temperature recorded|Celsius|
@@ -32,11 +31,85 @@ The accurate determination of occupancy detection in buildings has been recently
 
 ## Brief Summary of Analysis
 
+**Data Cleaning and Feature Engineering/Pre-Processing.**  
 
-![Fig1]()
+Three datasets were provided:  
+- datatraining.txt
+- datatest.txt
+- datatest2.txt
 
+Attribute names were modified to follow snake casing. Timestamps were cleaned by rounding up :59 to 00. A new feature was created to indicate whether the date corresponded to a weekday or to a weekend day. Observations were sorted by date, from the earliest timestamp to the latest. Data was indexed by timestamps, which allowed for time series type EDA, in addition to regular EDA. This provided me with an opportunity to observe how measurements changed over time.
+
+After cleaning and feature engineering/pre-processing, the datasets were saved into two formats, .csv and .p. Both file formats contain the clean data in time series format, where the index is the date, however .p files contain the additional feature, weekday. I saved each dataset individually, but also created a larger dataset with included all of the data in the three datasets, cleaned it as described above, and saved it in .csv and .p format.
+
+The resulting files after cleaning and feature engineering are:  
+- occupancy.csv and occupancy.p (combined data)  
+- train.csv and train.p (datatraining.txt)
+- test.csv and test.p (datatest.txt)
+- test2.csv and test2.p (datatest2.txt)  
+
+|Dataset|Description|Dimensions|Class Distribution (class 0 to class 1)|
+|---|---|---|---|
+|occupancy|combined data|17895, 7|78.88% to 21.11%|
+|train|training data|8143, 7|78.76% to 21.23%|
+|test|testing data, door open|2665, 7|63.52% to 36.47%|
+|test2|testing data, door closed|9752, 7|78.98% to 21.01%|
+
+**Exploratory Data Analysis was performed on the combined data, occupancy.**
+
+Descriptive Statistics.
+![Fig1](./images/fig1.jpg)
+
+Class Distribution.
+![Fig2](./images/fig2.jpg)
+
+Histograms.
+![Fig3](./images/fig3.jpg)
+*Temperature: right-skewed (positive skewness)    
+CO2: right-skewed (positive skewness)    
+Humidity_ratio: right-skewed (positive skewness)*. 
+
+Measurements over time.
+![Fig4](./images/fig4.jpg)
+*There is data missing for 2/11, so we observe a gap in the time series.  
+There are some spikes in light measurement on 2/7 and 2/12 which we will review in detail later.*. 
+
+Light measurements, Thursday 2/12 vs Friday 2/14.
+![Fig5](./images/fig5.jpg)
+*Light values measured on Thursday are higher than Saturday light measurements.*
+
+![Fig6](./images/fig6.jpg)
+![Fig7](./images/fig7.jpg)
+![Fig8](./images/fig8.jpg)
+![Fig9](./images/fig9.jpg)
+![Fig10](./images/fig10.jpg)
+![Fig11](./images/fig11.jpg)
+![Fig12](./images/fig12.jpg)
+![Fig13](./images/fig13.jpg)
+![Fig14](./images/fig14.jpg)
+![Fig15](./images/fig15.jpg)
+![Fig16](./images/fig16.jpg)
+![Fig17](./images/fig17.jpg)
+![Fig18](./images/fig18.jpg)
+![Fig19](./images/fig19.jpg)
+![Fig20](./images/fig20.jpg)  
+
+**Model training, evaluation, and summary.**  
+
+Models were trained on a split of 75% training to 25% testing of the combined data. The results show that inlcuding the 'weekday' feature improves the accuracy of the models. The models used were Random Forest (RF), Linear Discriminant Analysis (LDA), Classification and Regression Trees (CART), Gradient Boosting Machine (GBM), K-Nearest Neighbor (KNN), Support Vector Classification (SVC), and Adaptive Boosting (AdaBoost). When the 'weekday' feature was included, Random Forest and Gradient Boosting Machine models performed with the highest accuracy levels.
+
+Model name: Random Forest  
+Features used: temperature, humidity, light, humidity_ratio, weekday  
+Testing data: test
 <div>
-<img src="" width="400"/>
+<img src="./images/rf14_missed.jpg" width="400"/>
+</div>
+
+Model name: Random Forest  
+Features used: temperature, humidity, light, humidity_ratio, weekday  
+Testing data: test2
+<div>
+<img src="./images/rf14_missed2.jpg" width="400"/>
 </div>
 
 When comparing/evaluating models, we need to be familiar with a few metrics.  
