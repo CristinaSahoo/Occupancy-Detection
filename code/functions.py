@@ -80,7 +80,7 @@ def run_model(df, features, target, params, model, model_name):
     X = df[features]
     y = df[target]
     X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, random_state=0)
-    if model_name == 'knn':
+    if model_name in ['knn', 'svc']:
         ss = StandardScaler()
         X_train = ss.fit_transform(X_train)
         X_test = ss.fit(X_test)

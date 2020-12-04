@@ -1,4 +1,4 @@
-Model Name,Features,Best score,Train score,Test score,Sensitivity,Specificity,Precision,Accuracy,F1-score
+Model name,Features,Best score,Train score,Test score,Sensitivity,Specificity,Precision,Accuracy,F1-score
 rf0,"temperature, humidity, light, co2, humidity_ratio",0.9938,1.0,0.9953,0.9873,0.9974,0.9904,0.9953,0.9889
 rf1,"temperature, humidity, light, co2",0.994,1.0,0.9955,0.9884,0.9974,0.9905,0.9955,0.9894
 rf2,"temperature, humidity, co2, humidity_ratio",0.987,0.9999,0.9864,0.9672,0.9915,0.9682,0.9864,0.9677
@@ -35,3 +35,30 @@ gbm5,"temperature, humidity",0.9526,0.9838,0.9519,0.8804,0.9711,0.8908,0.9519,0.
 gbm6,"temperature, light",0.9901,0.9928,0.9899,0.9873,0.9906,0.9658,0.9899,0.9765
 gbm7,"humidity, light",0.9904,0.9994,0.9922,0.981,0.9952,0.982,0.9922,0.9815
 gbm8,"temperature, co2",0.9493,0.9716,0.9535,0.8804,0.9731,0.8975,0.9535,0.8889
+knn0,"temperature, humidity, light, co2, humidity_ratio",0.9908,0.9945,0.9926,0.9894,0.9935,0.976,0.9926,0.9827
+knn1,"temperature, humidity, light, co2",0.9908,0.9945,0.9926,0.9894,0.9935,0.976,0.9926,0.9827
+knn2,"temperature, humidity, co2, humidity_ratio",0.9308,0.966,0.9399,0.8582,0.9617,0.8573,0.9399,0.8577
+knn3,"temperature, humidity, light, humidity_ratio",0.9908,0.9908,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+knn4,"temperature, humidity, humidity_ratio",0.954,0.9691,0.9528,0.8857,0.9708,0.8904,0.9528,0.8881
+knn5,"temperature, humidity",0.9537,0.9686,0.9535,0.8825,0.9725,0.8958,0.9535,0.8891
+knn6,"temperature, light",0.9908,0.9907,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+knn7,"humidity, light",0.9908,0.9908,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+knn8,"temperature, co2",0.9051,0.9459,0.9133,0.7799,0.949,0.8037,0.9133,0.7916
+svc0,"temperature, humidity, light, co2, humidity_ratio",0.9903,0.9914,0.9913,0.9947,0.9904,0.9651,0.9913,0.9797
+svc1,"temperature, humidity, light, co2",0.9903,0.9914,0.9913,0.9947,0.9904,0.9651,0.9913,0.9797
+svc2,"temperature, humidity, co2, humidity_ratio",0.935,0.9542,0.9405,0.8423,0.9668,0.8719,0.9405,0.8568
+svc3,"temperature, humidity, light, humidity_ratio",0.9908,0.9908,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+svc4,"temperature, humidity, humidity_ratio",0.9338,0.9377,0.9347,0.8677,0.9527,0.8308,0.9347,0.8489
+svc5,"temperature, humidity",0.9338,0.9377,0.9347,0.8677,0.9527,0.8308,0.9347,0.8489
+svc6,"temperature, light",0.9908,0.9908,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+svc7,"humidity, light",0.9908,0.9908,0.9911,0.9915,0.9909,0.967,0.9911,0.9791
+svc8,"temperature, co2",0.9205,0.9297,0.9278,0.8095,0.9595,0.8425,0.9278,0.8257
+ada0,"temperature, humidity, light, co2, humidity_ratio",0.9911,0.9912,0.992,0.9905,0.9923,0.972,0.992,0.9811
+ada1,"temperature, humidity, light, co2",0.9907,0.9908,0.9913,0.9915,0.9912,0.968,0.9913,0.9796
+ada2,"temperature, humidity, co2, humidity_ratio",0.9119,0.9112,0.9117,0.7365,0.9586,0.8266,0.9117,0.779
+ada3,"temperature, humidity, light, humidity_ratio",0.9908,0.9908,0.9913,0.9915,0.9912,0.968,0.9913,0.9796
+ada4,"temperature, humidity, humidity_ratio",0.8852,0.8856,0.888,0.8317,0.9031,0.6968,0.888,0.7583
+ada5,"temperature, humidity",0.8844,0.8921,0.8898,0.8011,0.9136,0.7128,0.8898,0.7544
+ada6,"temperature, light",0.9907,0.9908,0.9913,0.9915,0.9912,0.968,0.9913,0.9796
+ada7,"humidity, light",0.9908,0.9909,0.992,0.9915,0.9921,0.971,0.992,0.9812
+ada8,"temperature, co2",0.9137,0.9135,0.9124,0.7418,0.9581,0.8257,0.9124,0.7815
