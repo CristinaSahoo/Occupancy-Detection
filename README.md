@@ -1,4 +1,4 @@
-# Project 3
+# Occupancy Detection
 
 
 ### Contents:
@@ -98,19 +98,27 @@ Light measurements, Thursday 2/12 vs Friday 2/14.
 
 Models were trained on a split of 75% training to 25% testing of the combined data. The results show that inlcuding the 'weekday' feature improves the accuracy of the models. The models used were Random Forest (RF), Linear Discriminant Analysis (LDA), Classification and Regression Trees (CART), Gradient Boosting Machine (GBM), K-Nearest Neighbor (KNN), Support Vector Classification (SVC), and Adaptive Boosting (AdaBoost). When the 'weekday' feature was included, Random Forest and Gradient Boosting Machine models performed with the highest accuracy levels.
 
+63 models were run on different combinations of the original features provided in the datasets: temperature, humidity, light, co2, humidity_ratio. A summary of all models and their corresponding features and scores can be found in the scores.csv file.
+
+154 models were run on different combinations of the original features and the newly engineered feature, 'weekday'. A summary of all models and their corresponding features and scores can be found in the scores2.csv file.
+
+A total of 217 models were run. The best model was Random Forest on the following features: temperature, humidity, light, humidity_ratio, weekday. At training time, the model reported 99.60% accuracy on a 75/20 train/test split of combined data, i.e. occupancy. For test data, with door open, the accuracy reported was 96.74% and for test2 data, with door closed, the accuracy reported as 99.72%.
+
 Model name: Random Forest  
 Features used: temperature, humidity, light, humidity_ratio, weekday  
 Testing data: test
 <div>
-<img src="./images/rf14_missed.jpg" width="400"/>
+<img src="./images/rf14_test.jpg" width="400"/>
 </div>
 
 Model name: Random Forest  
 Features used: temperature, humidity, light, humidity_ratio, weekday  
 Testing data: test2
 <div>
-<img src="./images/rf14_missed2.jpg" width="400"/>
+<img src="./images/rf14_test2.jpg" width="400"/>
 </div>
+
+<br>
 
 When comparing/evaluating models, we need to be familiar with a few metrics.  
 
@@ -119,21 +127,41 @@ When comparing/evaluating models, we need to be familiar with a few metrics.
 **Accuracy** tells us about the number of correctly classified data points with respect to the total data points. As the name suggests, accuracy talks about how close the predicted values are to the target values.  
 **Precision** expresses the proportion of the data points our model says was relevant actually were relevant.
 
-Below is a summary of scores for each of the models created for this purpose.
+For the purpose of this project, accuracy is used to rate the models from best to worst. Below are the top 10 models that had highest accuracy, all above 99%. 
+
+|    | Model name   | Features                                                   |   Best score |   Train score |   Test score |   Sensitivity |   Specificity |   Precision |   Accuracy |   F1-score |
+|---:|:-------------|:-----------------------------------------------------------|-------------:|--------------:|-------------:|--------------:|--------------:|------------:|-----------:|-----------:|
+| 14 | rf14         | temperature, humidity, light, humidity_ratio, weekday      |       0.994  |        0.9996 |       0.996  |        0.9905 |        0.9974 |      0.9905 |     0.996  |     0.9905 |
+| 12 | rf12         | temperature, humidity, light, co2, weekday                 |       0.9945 |        1      |       0.9958 |        0.9894 |        0.9974 |      0.9905 |     0.9958 |     0.9899 |
+| 11 | rf11         | temperature, humidity, light, co2, humidity_ratio, weekday |       0.9946 |        1      |       0.9955 |        0.9905 |        0.9969 |      0.9884 |     0.9955 |     0.9894 |
+|  1 | rf1          | temperature, humidity, light, co2                          |       0.994  |        1      |       0.9955 |        0.9884 |        0.9974 |      0.9905 |     0.9955 |     0.9894 |
+|  0 | rf0          | temperature, humidity, light, co2, humidity_ratio          |       0.9938 |        1      |       0.9953 |        0.9873 |        0.9974 |      0.9904 |     0.9953 |     0.9889 |
+| 77 | gbm11        | temperature, humidity, light, co2, humidity_ratio, weekday |       0.994  |        1      |       0.9951 |        0.9884 |        0.9969 |      0.9884 |     0.9951 |     0.9884 |
+| 67 | gbm1         | temperature, humidity, light, co2                          |       0.9932 |        0.9989 |       0.9949 |        0.9873 |        0.9969 |      0.9883 |     0.9949 |     0.9878 |
+| 18 | rf18         | humidity, light, weekday                                   |       0.992  |        0.9994 |       0.9949 |        0.9884 |        0.9966 |      0.9873 |     0.9949 |     0.9878 |
+|  3 | rf3          | temperature, humidity, light, humidity_ratio               |       0.9931 |        0.9996 |       0.9944 |        0.9831 |        0.9974 |      0.9904 |     0.9944 |     0.9867 |
+| 66 | gbm0         | temperature, humidity, light, co2, humidity_ratio          |       0.993  |        1      |       0.9944 |        0.9862 |        0.9966 |      0.9873 |     0.9944 |     0.9868 |
 
 <br>
 
 |Abbreviation|Meaning|
 |---|---|
+|RF|Random Forest|
+|LDA|Linear Discriminant Analysis|
+|GBM|Gradient Boosting Machine|
+|AdaBoost|Adaptive Boosting|
+|KNN|K-Nearest Neighbor|
+|SVC|Support Vector Classification|
 
 <br>
 
-In our case, we are aiming to classify posts as accurately as possible, so we have chosen to optimize for accuracy. The best model in this case is the first model with highest accuracy of 93%.
-
-The parameters used for our best model:  
+The best parameters used for our best model, after gridsearch, are below:  
 
 |Parameter Name|Parameter Value|
 |---|---|
+|max_depth| None|
+|max_features| auto|
+|n_estimators| 100|
 
 <br>
 
@@ -142,7 +170,7 @@ The parameters used for our best model:
 
 The accuracy of the prediction of occupancy in an office room using data from light, temperature, humidity and CO2 sensors has been evaluated with different statistical classification models using Python. Three data sets were used in this work, one for training, and two for testing the models considering the office door opened and closed during occupancy. The datasets were combined into one large dataset. The data was cleaned, and exploratory data analysis was performed on it. The models were trained on a split of 75% train to 25% test of the combined dataset. The data sets provided for testing, with door open and door closed, were used to generate predictions and further evaluate the models.
 
-Typically the best accuracies (ranging from 95% to 99%) are obtained from training Linear Discriminant Analysis (LDA), Classification and Regression Trees (CART) and Random Forest (RF) models. The results show that a proper selection of features together with an appropriate classification model can have an important impact on the accuracy prediction. Information from the time stamp has been included in the models, and usually it increases the accuracy of the detection. Interestingly, using only one predictor (temperature) the LDA model was able to estimate the occupancy with accuracies of 85% and 83% in the two testing sets.
+A total of 217 models were run. The best model was Random Forest on the following features: temperature, humidity, light, humidity_ratio, weekday. At training time, the model reported 99.60% accuracy on a 75/20 train/test split of combined data, i.e. occupancy. For test data, with door open, the accuracy reported was 96.74% and for test2 data, with door closed, the accuracy reported as 99.72%.
 
 
 ## Conclusions and Recommendations
