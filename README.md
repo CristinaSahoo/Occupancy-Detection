@@ -107,16 +107,12 @@ A total of 217 models were run. The best model was Random Forest on the followin
 Model name: Random Forest  
 Features used: temperature, humidity, light, humidity_ratio, weekday  
 Testing data: test
-<div>
-<img src="./images/rf14_test.jpg" width="400"/>
-</div>
+![rf14_test](./images/rf14_test.jpg) 
 
 Model name: Random Forest  
 Features used: temperature, humidity, light, humidity_ratio, weekday  
 Testing data: test2
-<div>
-<img src="./images/rf14_test2.jpg" width="400"/>
-</div>
+![rf14_test2](./images/rf14_test2.jpg) 
 
 <br>
 
