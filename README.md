@@ -31,7 +31,7 @@ The accurate determination of occupancy detection in buildings has been recently
 |humidity|relative humidity recorded|%|
 |light|light recorded at time of observation|Lux|
 |co2|CO2 measured at the time of observation|ppm, parts per million|
-|humidity_ration|derived quantity from temperature and relative humidity|kgwater-vapor/kg-air|
+|humidity_ratio|derived quantity from temperature and relative humidity|kgwater-vapor/kg-air|
 |occupancy|status of room occupancy|0 for not occupied, 1 for occupied status|
 |weekday|indicates if the timestamp is weekday or weekend| 1 for weekday, 0 for weekend|
 
@@ -78,7 +78,7 @@ Humidity_ratio: right-skewed (positive skewness)*.
 Measurements over time.
 ![Fig4](./images/fig4.jpg)
 *There is data missing for 2/11, so we observe a gap in the time series.  
-There are some spikes in light measurement on 2/7 and 2/12 which we will review in detail later.*. 
+There are some spikes in light measurement on 2/7 and 2/12 which we will review in detail later.* 
 
 Light measurements, Thursday 2/12 vs Friday 2/14.
 ![Fig5](./images/fig5.jpg)
