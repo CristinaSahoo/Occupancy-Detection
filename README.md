@@ -56,7 +56,7 @@ The resulting files after cleaning and feature engineering are:
 
 |Dataset|Description|Dimensions|Class Distribution (class 0 to class 1)|
 |---|---|---|---|
-|occupancy|combined data|17895, 7|78.88% to 21.11%|
+|occupancy|combined data|17895, 7|76.89% to 23.10%|
 |train|training data|8143, 7|78.76% to 21.23%|
 |test|testing data, door open|2665, 7|63.52% to 36.47%|
 |test2|testing data, door closed|9752, 7|78.98% to 21.01%|
