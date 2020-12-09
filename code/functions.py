@@ -2,6 +2,7 @@ import string
 import numpy as np
 import pandas as pd
 import pickle
+import matplotlib.pyplot as plt
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix, plot_confusion_matrix
 from sklearn.preprocessing import StandardScaler
@@ -92,3 +93,51 @@ def run_model(df, features, target, params, model, model_name):
     filename = '../models/' + model_name + '.sav'
     pickle.dump(gs, open(filename, 'wb'))
     return scores
+
+def test_model(model_name):
+    filename = '../models/' + model_name +'.sav'
+    test = pickle.load(open("../datasets/test.p", "rb"))
+    test2 = pickle.load(open("../datasets/test2.p", "rb"))
+    scores = pd.read_csv('../models/scores.csv')
+    
+    features = scores[scores['Model name'] == model_name]['Features'].values[0].split(', ')
+    target = 'occupancy'
+    gs = pickle.load(open(filename, 'rb'))
+    X_test = test[features]
+    y_test = test[target]
+    X_test2 = test2[features]
+    y_test2 = test2[target]
+    
+    accuracy = gs.score(X_test, y_test)
+    accuracy2 = gs.score(X_test2, y_test2)
+    
+    preds = pd.DataFrame(gs.predict(X_test), columns=['predictions'])
+    preds2 = pd.DataFrame(gs.predict(X_test2), columns=['predictions'])
+    
+    test['predictions'] = preds['predictions'].values
+    test2['predictions'] = preds2['predictions'].values
+    
+    missed = test[test['occupancy'] != test['predictions']]
+    missed2 = test2[test2['occupancy'] != test2['predictions']]
+    missed.to_csv('../models/' + model_name + '_missed.csv')
+    missed2.to_csv('../models/' + model_name + '_missed2.csv')
+    
+    title = 'Model ' + model_name + ', test data door open, accuracy ' + \
+        str(np.round(accuracy * 100,2)) + '%'
+    fig, ax = plt.subplots(figsize=(10, 6))
+    plot_confusion_matrix(gs, X_test, y_test, cmap='Blues', values_format='d', ax=ax)
+    plt.title(title, fontsize=14, pad=20, color='blue')
+    plt.tight_layout()
+    plt.savefig('../images/conf_' + model_name + '_test.jpg', dpi=200)
+    plt.close();
+    
+    title2 = 'Model ' + model_name + ', test data door closed, accuracy ' + \
+        str(np.round(accuracy2 * 100,2)) + '%'
+    fig, ax = plt.subplots(figsize=(10, 6))
+    plot_confusion_matrix(gs, X_test2, y_test2, cmap='Blues', values_format='d', ax=ax)
+    plt.title(title2, fontsize=14, pad=20, color='blue')
+    plt.tight_layout()
+    plt.savefig('../images/conf_' + model_name + '_test2.jpg', dpi=200)
+    plt.close();
+    
+    return gs, accuracy, accuracy2
