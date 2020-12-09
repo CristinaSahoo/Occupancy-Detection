@@ -11,7 +11,7 @@
 
 ## Problem Statement
 
-Environment variables, i.e. temperature, light, CO2, and humidity were measured over a period of two weeks, from 02/04/2015 to 02/18/2015, in an office room, in Mons, Belgium, during the month of February. The humidity ratio was calculated from temperature and relative humidity. The aim of this project is to:
+Environment variables, i.e. temperature, light, CO2, and humidity were measured over a period of two weeks, from 02/02/2015 to 02/18/2015, in an office room, in Mons, Belgium, during the month of February. The humidity ratio was calculated from temperature and relative humidity. The aim of this project is to:
 
 1) explore the data to *identify trends over time*, and answer questions such as: Are CO2 values higher during the weekend compared to weekdays? Does light play an important role when predicting occupancy? Are temperature measurements reporting higher values during the week or during the weekend? How correlated is each of the environment variables to occupancy? How correlated is each of these variables to the others? Does the day of the week, i.e. weekday vs. weekend, play an important role in predicting occupancy? Are average values higher or lower when the room is occupied?
 
