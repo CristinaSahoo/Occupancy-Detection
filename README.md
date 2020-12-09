@@ -13,7 +13,7 @@
 
 Environment variables, i.e. temperature, light, CO2, and humidity were measured over a period of two weeks, from 02/04/2015 to 02/18/2015, in an office room, in Mons, Belgium, during the month of February. The humidity ratio was calculated from temperature and relative humidity. The aim of this project is to:
 
-1) explore the data to *identify trends over time*, and answer questions such as: Are CO2 values higher during the weekend compared to weekdays? Does light play an important role when predicting occupancy? Are temperature measurements reporting higher values during the week or during the weekend? How correlated is each of these variables to occupancy? How correlated is each of these variables to the others? Does the day of the week, i.e. weekday vs. weekend, play an important role in predicting occupancy? Are average values higher or lower when the room is occupied?
+1) explore the data to *identify trends over time*, and answer questions such as: Are CO2 values higher during the weekend compared to weekdays? Does light play an important role when predicting occupancy? Are temperature measurements reporting higher values during the week or during the weekend? How correlated is each of the environment variables to occupancy? How correlated is each of these variables to the others? Does the day of the week, i.e. weekday vs. weekend, play an important role in predicting occupancy? Are average values higher or lower when the room is occupied?
 
 2) automate the model building and testing process to allow the creation of 200+ models and *identify the best algorithm* that predicts occupancy from these environment variables.
 
@@ -65,9 +65,7 @@ The resulting files after cleaning and feature engineering are:
 
 Descriptive Statistics.
 ![Fig1](./images/fig1.jpg)
-
-Class Distribution.
-![Fig2](./images/fig2.jpg)
+**
 
 Histograms.
 ![Fig3](./images/fig3.jpg)
@@ -75,29 +73,30 @@ Histograms.
 CO2: right-skewed (positive skewness)    
 Humidity_ratio: right-skewed (positive skewness)*. 
 
+Pair and KDE Plots.
+![Fig21](./images/fig21.jpg)
+**
+
+Class Distribution.
+![Fig2](./images/fig2.jpg)
+
 Measurements over time.
 ![Fig4](./images/fig4.jpg)
 *There is data missing for 2/11, so we observe a gap in the time series.  
 There are some spikes in light measurement on 2/7 and 2/12 which we will review in detail later.* 
 
-Light measurements, Thursday 2/12 vs Friday 2/14.
-![Fig5](./images/fig5.jpg)
-*Light values measured on Thursday are higher than Saturday light measurements.*
-
-![Fig6](./images/fig6.jpg)
-![Fig7](./images/fig7.jpg)
-![Fig8](./images/fig8.jpg)
+Average Measurements by Class
 ![Fig9](./images/fig9.jpg)
+**
+
 ![Fig10](./images/fig10.jpg)
 ![Fig11](./images/fig11.jpg)
 ![Fig12](./images/fig12.jpg)
 ![Fig13](./images/fig13.jpg)
-![Fig14](./images/fig14.jpg)
-![Fig15](./images/fig15.jpg)
-![Fig16](./images/fig16.jpg)
+
 ![Fig17](./images/fig17.jpg)
 ![Fig18](./images/fig18.jpg)
-![Fig19](./images/fig19.jpg)
+
 ![Fig20](./images/fig20.jpg)  
 
 **Model training, evaluation, and summary.**  
