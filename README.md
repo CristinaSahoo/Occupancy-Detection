@@ -15,7 +15,7 @@ Environment variables, i.e. temperature, light, CO2, and humidity were measured 
 
 1) explore the data to *identify trends over time*, and answer questions such as: Are CO2 values higher during the weekend compared to weekdays? Does light play an important role when predicting occupancy? Are temperature measurements reporting higher values during the week or during the weekend? How correlated is each of the environment variables to occupancy? How correlated is each of these variables to the others? Does the day of the week, i.e. weekday vs. weekend, play an important role in predicting occupancy? Are average values higher or lower when the room is occupied?
 
-2) automate the model building and testing process to allow the creation of 200+ models and *identify the best algorithm* that predicts occupancy from these environment variables.
+2) automate the model building and testing process to allow the creation of 150+ models and *identify the best algorithm* that predicts occupancy from these environment variables.
 
 
 ## Why is this important?
@@ -151,22 +151,25 @@ CO2 lower on the weekends. Very high values on the 9th or 10th.
 The status of the day, i.e. weekend or weekday seems to be correlated with all these variables. We also know occupancy is correlated to the status of the day, as the room is usually empty on the weekends and occupied during the week. This information will be helpful during the modeling phase.*
 
 Zooming in on spike values for light on 2/4, 2/7, and 2/12.  
-![Fig10](./images/fig10.jpg)
-![Fig11](./images/fig11.jpg)
-![Fig12](./images/fig12.jpg)
-![Fig13](./images/fig13.jpg)
-![Fig27](./images/fig27.jpg)
-![Fig28](./images/fig28.jpg)
+
+|Day|CloseUp|
+|---|---|
+|![Fig10](./images/fig10.jpg)|![Fig11](./images/fig11.jpg)|  
+|![Fig12](./images/fig12.jpg)|![Fig13](./images/fig13.jpg)|  
+|![Fig27](./images/fig27.jpg)|![Fig28](./images/fig28.jpg)|  
+
 *2/4 spike at 9:41am  
 2/7 spike at 9:42am  
 2/12 spike at 9:48am  
 Due to the repetitive nature of this, I think this may be caused by the sun hitting the light sensor and causing a high value to be recorded, then the value dropping back to normal after the sun stops hitting the sensor directly.*  
 
 Zooming in on spike values for co2 on 2/9 and 2/11.  
-![Fig29](./images/fig29.jpg)
-![Fig30](./images/fig30.jpg)
-![Fig31](./images/fig31.jpg)
-![Fig32](./images/fig32.jpg)
+
+|Day|CloseUp|
+|---|---|
+|![Fig29](./images/fig29.jpg)|![Fig30](./images/fig30.jpg)|  
+|![Fig31](./images/fig31.jpg)|![Fig32](./images/fig32.jpg)|  
+
 *2/9 spike between 22:10 and 22:15  
 2/11 spike between 18:50 and 18:55  
 Without having participated in the collection of the data, it is difficult to tell what may have caused these spikes, given they occurred during periods of non-occupancy when co2 levels should be low.*  
