@@ -213,18 +213,33 @@ When comparing/evaluating models, we need to be familiar with a few metrics.
 
 For the purpose of this project, accuracy is used to rate the models from best to worst. Below are the top 10 models that had highest accuracy, all above 99%. 
 
-|    | Model name   | Features                                                   |   Best score |   Train score |   Test score |   Sensitivity |   Specificity |   Precision |   Accuracy |   F1-score |
-|---:|:-------------|:-----------------------------------------------------------|-------------:|--------------:|-------------:|--------------:|--------------:|------------:|-----------:|-----------:|
-| 12 | rf12         | temperature, humidity, light, co2, weekday                 |       0.9923 |        1      |       0.9936 |        0.9874 |        0.9954 |      0.9849 |     0.9936 |     0.9861 |
-| 11 | rf11         | temperature, humidity, light, co2, humidity_ratio, weekday |       0.9925 |        1      |       0.9934 |        0.9865 |        0.9954 |      0.9849 |     0.9934 |     0.9857 |
-|  0 | rf0          | temperature, humidity, light, co2, humidity_ratio          |       0.9922 |        1      |       0.9932 |        0.9865 |        0.9952 |      0.984  |     0.9932 |     0.9853 |
-|  1 | rf1          | temperature, humidity, light, co2                          |       0.9921 |        1      |       0.993  |        0.9865 |        0.9949 |      0.9832 |     0.993  |     0.9849 |
-|  3 | rf3          | temperature, humidity, light, humidity_ratio               |       0.9919 |        0.9997 |       0.9928 |        0.9857 |        0.9949 |      0.9832 |     0.9928 |     0.9844 |
-| 56 | cart12       | temperature, humidity, light, co2, weekday                 |       0.9896 |        1      |       0.9928 |        0.9823 |        0.996  |      0.9865 |     0.9928 |     0.9844 |
-| 78 | gbm12        | temperature, humidity, light, co2, weekday                 |       0.9915 |        1      |       0.9926 |        0.9832 |        0.9954 |      0.9848 |     0.9926 |     0.984  |
-| 14 | rf14         | temperature, humidity, light, humidity_ratio, weekday      |       0.9923 |        0.9997 |       0.9926 |        0.9857 |        0.9947 |      0.9824 |     0.9926 |     0.984  |
-| 77 | gbm11        | temperature, humidity, light, co2, humidity_ratio, weekday |       0.9919 |        1      |       0.9926 |        0.9857 |        0.9947 |      0.9824 |     0.9926 |     0.984  |
-| 80 | gbm14        | temperature, humidity, light, humidity_ratio, weekday      |       0.9915 |        0.9995 |       0.9924 |        0.9848 |        0.9947 |      0.9824 |     0.9924 |     0.9836 |
+| Model name   | Features                                                   |   Best score |   Train score |   Test score |   Sensitivity |   Specificity |   Precision |   Accuracy |   F1-score |
+|:-------------|:-----------------------------------------------------------|-------------:|--------------:|-------------:|--------------:|--------------:|------------:|-----------:|-----------:|
+| rf12         | temperature, humidity, light, co2, weekday                 |       0.9923 |        1      |       0.9936 |        0.9874 |        0.9954 |      0.9849 |     0.9936 |     0.9861 |
+| rf11         | temperature, humidity, light, co2, humidity_ratio, weekday |       0.9925 |        1      |       0.9934 |        0.9865 |        0.9954 |      0.9849 |     0.9934 |     0.9857 |
+| rf0          | temperature, humidity, light, co2, humidity_ratio          |       0.9922 |        1      |       0.9932 |        0.9865 |        0.9952 |      0.984  |     0.9932 |     0.9853 |
+| rf1          | temperature, humidity, light, co2                          |       0.9921 |        1      |       0.993  |        0.9865 |        0.9949 |      0.9832 |     0.993  |     0.9849 |
+| rf3          | temperature, humidity, light, humidity_ratio               |       0.9919 |        0.9997 |       0.9928 |        0.9857 |        0.9949 |      0.9832 |     0.9928 |     0.9844 |
+| cart12       | temperature, humidity, light, co2, weekday                 |       0.9896 |        1      |       0.9928 |        0.9823 |        0.996  |      0.9865 |     0.9928 |     0.9844 |
+| gbm12        | temperature, humidity, light, co2, weekday                 |       0.9915 |        1      |       0.9926 |        0.9832 |        0.9954 |      0.9848 |     0.9926 |     0.984  |
+| rf14         | temperature, humidity, light, humidity_ratio, weekday      |       0.9923 |        0.9997 |       0.9926 |        0.9857 |        0.9947 |      0.9824 |     0.9926 |     0.984  |
+| gbm11        | temperature, humidity, light, co2, humidity_ratio, weekday |       0.9919 |        1      |       0.9926 |        0.9857 |        0.9947 |      0.9824 |     0.9926 |     0.984  |
+| gbm14        | temperature, humidity, light, humidity_ratio, weekday      |       0.9915 |        0.9995 |       0.9924 |        0.9848 |        0.9947 |      0.9824 |     0.9924 |     0.9836 |
+
+<br>
+
+| Model name   | Accuracy Door Open   | Accuracy Door Closed   |
+|:-------------|:---------------------|:-----------------------|
+| rf12         | 99.74%               | 99.87%                 |
+| rf11         | 99.74%               | 99.86%                 |
+| rf0          | 99.74%               | 99.85%                 |
+| rf1          | 99.74%               | 99.85%                 |
+| rf3          | 99.77%               | 99.79%                 |
+| cart12       | 99.7%                | 99.88%                 |
+| gbm12        | 99.66%               | 99.88%                 |
+| rf14         | 99.74%               | 99.82%                 |
+| gbm11        | 99.59%               | 99.87%                 |
+| gbm14        | 99.7%                | 99.81%                 |
 
 <br>
 
